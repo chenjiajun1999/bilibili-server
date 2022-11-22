@@ -1,0 +1,18 @@
+jasypt:
+  baseurl: ENC(vmUHH0pALjr/i6pMKUlPGeZZcROuf3sh)
+  username: ENC(Eq4WR2jwtM4DIKg9gA8kLQ==)
+  password: ENC(zrbh/kdig8bYqHVqEESVzBOp6/amsZ02)
+  mysql-port: 3306
+
+server:
+  port: 8080
+#  servlet:
+#    context-path: /bilibili
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://${jasypt.baseurl}:${jasypt.mysql-port}/bilibili-server?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    username: ${jasypt.username}
+    password: ${jasypt.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
