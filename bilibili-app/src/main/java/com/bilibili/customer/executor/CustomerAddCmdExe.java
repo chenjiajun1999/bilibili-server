@@ -3,8 +3,8 @@ package com.bilibili.customer.executor;
 
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.exception.BizException;
-import com.bilibili.dto.CustomerAddCmd;
-import com.bilibili.dto.data.ErrorCode;
+import com.bilibili.customer.dto.CustomerAddCmd;
+import com.bilibili.customer.dto.data.ErrorCode;
 import org.springframework.stereotype.Component;
 
 

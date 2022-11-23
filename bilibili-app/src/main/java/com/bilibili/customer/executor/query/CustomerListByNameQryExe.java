@@ -1,8 +1,8 @@
 package com.bilibili.customer.executor.query;
 
 import com.alibaba.cola.dto.MultiResponse;
-import com.bilibili.dto.CustomerListByNameQry;
-import com.bilibili.dto.data.CustomerDTO;
+import com.bilibili.customer.dto.CustomerListByNameQry;
+import com.bilibili.customer.dto.data.CustomerDTO;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;

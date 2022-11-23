@@ -53,5 +53,6 @@ public class JasyptGenerator {
         // 加密
         // 盐值替换成自己熟悉的口令，此口令为解密密钥，需要妥善保管。
         System.out.println(encryptPwd("key", "password"));
+        System.out.println(encryptPwd("bilibili-server", "116.205.138.203"));
     }
 }

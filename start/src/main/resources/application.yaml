@@ -1,13 +1,13 @@
 jasypt:
-  baseurl: ENC(vmUHH0pALjr/i6pMKUlPGeZZcROuf3sh)
+  baseurl: ENC(l+Z/1gj7JlP9l4WN12RN0qr6nWOxQ0xl)
   username: ENC(Eq4WR2jwtM4DIKg9gA8kLQ==)
   password: ENC(zrbh/kdig8bYqHVqEESVzBOp6/amsZ02)
   mysql-port: 3306
 
 server:
   port: 8080
-#  servlet:
-#    context-path: /bilibili
+  servlet:
+    context-path: /bilibili-api
 
 spring:
   datasource:

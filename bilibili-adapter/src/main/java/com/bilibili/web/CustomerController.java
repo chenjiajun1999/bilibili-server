@@ -2,10 +2,10 @@ package com.bilibili.web;
 
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;
-import com.bilibili.api.CustomerServiceI;
-import com.bilibili.dto.CustomerAddCmd;
-import com.bilibili.dto.CustomerListByNameQry;
-import com.bilibili.dto.data.CustomerDTO;
+import com.bilibili.customer.api.CustomerServiceI;
+import com.bilibili.customer.dto.CustomerAddCmd;
+import com.bilibili.customer.dto.CustomerListByNameQry;
+import com.bilibili.customer.dto.data.CustomerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -17,8 +17,8 @@
         <maven.deploy.skip>true</maven.deploy.skip>
 
         <cola.components.version>4.3.1</cola.components.version>
-
         <spring-boot.version>2.7.2</spring-boot.version>
+
         <mybatis-starter.version>2.2.2</mybatis-starter.version>
     </properties>
 
@@ -88,11 +88,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis-starter.version}</version>
             </dependency>
+
 
             <!--Validation API-->
             <!--
@@ -130,6 +132,18 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>1.2.5</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>3.3.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter-test</artifactId>
+                <version>3.5.2</version>
             </dependency>
 
         </dependencies>
