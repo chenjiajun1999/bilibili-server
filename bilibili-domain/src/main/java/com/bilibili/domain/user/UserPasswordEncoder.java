@@ -40,7 +40,7 @@ public class UserPasswordEncoder {
 
     public void verify(String encryptPassword, String salt) {
 
-        if (encryptPassword.equals(SecureUtil.md5(password + salt))) {
+        if (!encryptPassword.equals(SecureUtil.md5(password + salt))) {
 
             throw new BizException(ErrorCode.B_USER_passwordError.getErrCode(),
                     ErrorCode.B_USER_passwordError.getErrDesc());

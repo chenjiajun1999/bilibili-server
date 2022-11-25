@@ -73,9 +73,9 @@ public class UserGatewayImpl implements UserGateway {
     public String login(User user) {
 
         QueryWrapper<UserDO> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("phone", user.getPhone());
+        queryWrapper.eq("phone", user.getPhone().getNumber());
         UserDO userDO = userMapper.selectOne(queryWrapper);
-        if (ObjectUtils.isNotEmpty(userDO)) {
+        if (ObjectUtils.isEmpty(userDO)) {
             throw new BizException(ErrorCode.B_USER_phoneNotExit.getErrCode(), ErrorCode.B_USER_phoneNotExit.getErrDesc());
         }
 
