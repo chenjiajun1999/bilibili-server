@@ -1,14 +1,19 @@
 package com.bilibili.gatewayimpl.user;
 
+import com.alibaba.cola.exception.BizException;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
+import com.bilibili.common.utils.TokenUtils;
 import com.bilibili.domain.user.User;
 import com.bilibili.domain.user.gateway.UserGateway;
 import com.bilibili.gatewayimpl.user.convertor.UserConvertor;
+import com.bilibili.gatewayimpl.user.database.UserInfoMapper;
 import com.bilibili.gatewayimpl.user.database.UserMapper;
 import com.bilibili.gatewayimpl.user.database.dataobject.UserDO;
+import com.bilibili.user.dto.data.ErrorCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 
@@ -18,6 +23,9 @@ public class UserGatewayImpl implements UserGateway {
 
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    UserInfoMapper userInfoMapper;
 
     @Override
     public Boolean checkByPhone(String phone) {
@@ -35,6 +43,7 @@ public class UserGatewayImpl implements UserGateway {
     }
 
     @Override
+    @Transactional(rollbackFor = Throwable.class)
     public void save(User user) {
 
         if (Objects.isNull(user.getId())) {
@@ -46,12 +55,33 @@ public class UserGatewayImpl implements UserGateway {
     }
 
     @Override
+    @Transactional(rollbackFor = Throwable.class)
     public void register(User user) {
-        userMapper.insert(UserConvertor.createUserDO(user));
+
+        UserDO userDO = UserConvertor.toDataObject(user);
+        userMapper.insert(userDO);
+        userInfoMapper.insert(UserConvertor.toDataObject(userDO));
+
     }
 
     @Override
     public void modify(User user) {
+
+    }
+
+    @Override
+    public String login(User user) {
+
+        QueryWrapper<UserDO> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("phone", user.getPhone());
+        UserDO userDO = userMapper.selectOne(queryWrapper);
+        if (ObjectUtils.isNotEmpty(userDO)) {
+            throw new BizException(ErrorCode.B_USER_phoneNotExit.getErrCode(), ErrorCode.B_USER_phoneNotExit.getErrDesc());
+        }
+
+        // 验证
+        user.getEncoder().verify(userDO.getPassword(), userDO.getSalt());
+        return TokenUtils.generateToken(userDO.getId());
 
     }
 }

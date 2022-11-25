@@ -1,30 +1,26 @@
 package com.bilibili.user.executor;
 
-import com.alibaba.cola.dto.Response;
+
+import com.alibaba.cola.dto.SingleResponse;
 import com.alibaba.cola.exception.BizException;
 import com.bilibili.domain.user.User;
 import com.bilibili.domain.user.gateway.UserGateway;
 import com.bilibili.user.assembler.UserAssembler;
-import com.bilibili.user.dto.UserRegisterCmd;
+import com.bilibili.user.dto.UserLoginCmd;
 import com.bilibili.user.dto.data.ErrorCode;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
 @Component
-public class UserRegisterCmdExe {
-
+public class UserLoginCmdExe {
 
     @Resource
     private UserGateway userGateway;
 
-    public Response execute(UserRegisterCmd cmd) {
+    public SingleResponse<String> execute(UserLoginCmd cmd) {
 
         User user = UserAssembler.toEntity(cmd);
-        if (userGateway.checkByPhone(cmd.getPhone())) {
-            throw new BizException(ErrorCode.B_USER_phoneExit.getErrCode(), ErrorCode.B_USER_phoneExit.getErrDesc());
-        }
-        userGateway.register(user);
-        return Response.buildSuccess();
+        return SingleResponse.of(userGateway.login(user));
     }
 }

@@ -4,7 +4,9 @@ import cn.hutool.crypto.SecureUtil;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
 import com.bilibili.user.UserServiceI;
+import com.bilibili.user.dto.UserLoginCmd;
 import com.bilibili.user.dto.UserRegisterCmd;
+import com.bilibili.utils.RSAUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +29,7 @@ public class UserController {
 
     @GetMapping("/rsa-pks")
     public SingleResponse<String> getRsaPublicKey() {
-        String pk = SecureUtil.rsa().getPublicKeyBase64();
+        String pk = RSAUtils.getPublicKey();
         return SingleResponse.of(pk);
     }
 
@@ -37,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/user-tokens")
-    public SingleResponse<String> login() {
-        return null;
+    public SingleResponse<String> login(@RequestBody UserLoginCmd cmd) {
+        return userService.login(cmd);
     }
 }

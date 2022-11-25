@@ -11,7 +11,7 @@ import lombok.Data;
 
 
 @Data
-public class UserEncoder {
+public class UserPasswordEncoder {
 
     private String password;
 
@@ -19,42 +19,26 @@ public class UserEncoder {
 
 
     // 注册调用
-    public UserEncoder(String password) {
+    public UserPasswordEncoder encoder(String password) {
 
-        if (StrUtil.isBlank(password)) {
-            throw new BizException(ErrorCode.B_USER_passwordBlank.getErrCode(),
-                    ErrorCode.B_USER_passwordBlank.getErrDesc());
-        }
-
-        try {
-            RSAUtils.decrypt(password);
-        } catch (Exception e) {
-            throw new BizException(ErrorCode.B_USER_passwordRSAFailed.getErrCode(),
-                    ErrorCode.B_USER_passwordRSAFailed.getErrDesc());
-        }
+        check(password);
 
         this.salt = RandomUtil.randomString(8);
         this.password = SecureUtil.md5(password + salt);
-
+        return this;
     }
 
     // 登录调用
-    public UserEncoder(String password, String encryptPassword, String salt) {
+    public UserPasswordEncoder storage(String password){
 
-        if (StrUtil.isBlank(password)) {
-            throw new BizException(ErrorCode.B_USER_passwordBlank.getErrCode(),
-                    ErrorCode.B_USER_passwordBlank.getErrDesc());
-        }
+        check(password);
 
-        try {
-            RSAUtils.decrypt(password);
-        } catch (Exception e) {
-            throw new BizException(ErrorCode.B_USER_passwordRSAFailed.getErrCode(),
-                    ErrorCode.B_USER_passwordRSAFailed.getErrDesc());
-        }
+        this.password = password;
+        return this;
+    }
 
-        this.password = encryptPassword;
-        this.salt = salt;
+
+    public void verify(String encryptPassword, String salt) {
 
         if (encryptPassword.equals(SecureUtil.md5(password + salt))) {
 
@@ -62,7 +46,21 @@ public class UserEncoder {
                     ErrorCode.B_USER_passwordError.getErrDesc());
 
         }
-
     }
 
+    public void check(String password){
+
+        if (StrUtil.isBlank(password)) {
+            throw new BizException(ErrorCode.B_USER_passwordBlank.getErrCode(),
+                    ErrorCode.B_USER_passwordBlank.getErrDesc());
+        }
+
+        try {
+            RSAUtils.decrypt(password);
+        } catch (Exception e) {
+            throw new BizException(ErrorCode.B_USER_passwordRSAFailed.getErrCode(),
+                    ErrorCode.B_USER_passwordRSAFailed.getErrDesc());
+        }
+
+    }
 }

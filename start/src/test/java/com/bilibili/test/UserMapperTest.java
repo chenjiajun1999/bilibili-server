@@ -19,9 +19,10 @@ public class UserMapperTest {
     @Test
     void testInsert() {
         UserDO user = new UserDO();
-        user.setPhone("1221233213");
+        user.setPhone("13682962214");
         user.setEmail("1789573982@123.com");
         userMapper.insert(user);
+        System.out.println(user.getId());
         assertThat(user.getId()).isNotNull();
     }
 }

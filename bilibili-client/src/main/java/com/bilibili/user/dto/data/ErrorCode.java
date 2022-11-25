@@ -9,6 +9,7 @@ public enum ErrorCode {
     B_USER_passwordError("B_USER_passwordError", "密码错误"),
 
     B_USER_phoneExit("B_USER_phoneExit", "手机号已存在"),
+    B_USER_phoneNotExit("B_USER_phoneNotExit", "手机号不存在"),
     B_USER_phoneInvalid("B_USER_phoneInvalid", "手机号格式错误"),
     B_USER_phoneBlank("B_USER_phoneBlank", "手机号为空");
 

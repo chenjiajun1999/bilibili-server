@@ -28,7 +28,7 @@ public class User {
     /**
      * 密码
      */
-    private UserEncoder encoder;
+    private UserPasswordEncoder encoder;
 
     /**
      * 创建时间

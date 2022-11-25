@@ -9,11 +9,12 @@ public interface UserGateway {
 
     Boolean checkById(Long id);
 
-
     void save(User user);
 
     void register(User user);
 
     void modify(User user);
+
+    String login(User user);
 
 }
