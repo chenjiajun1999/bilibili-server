@@ -1,8 +1,10 @@
-jasypt:
-  baseurl: ENC(l+Z/1gj7JlP9l4WN12RN0qr6nWOxQ0xl)
-  username: ENC(Eq4WR2jwtM4DIKg9gA8kLQ==)
-  password: ENC(zrbh/kdig8bYqHVqEESVzBOp6/amsZ02)
-  mysql-port: 3306
+JASYPT_BASEURL: ENC(l+Z/1gj7JlP9l4WN12RN0qr6nWOxQ0xl)
+JASYPT_USERNAME: ENC(Eq4WR2jwtM4DIKg9gA8kLQ==)
+JASYPT_PASSWORD: ENC(zrbh/kdig8bYqHVqEESVzBOp6/amsZ02)
+JASYPT_MYSQL_PORT: 3306
+
+RSA_PUBLIC_KEY: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCAm6P6NsqeTZlmpuiTEIBdI2Amp8/M4MWlAQKFsKgU70SI4uYcy09QxnY9j1pOneIA8Zx2on2k3fcwULZ7FL2IuvmYfHhe+sMQQ9RuL1pwjqThhpaorn2XIAZe0NFkzERjMlfb8WYByQWSi43aWV43Ib6uU5+8rNT9UDnV22W/pQIDAQAB
+RSA_PRIVATE_KEY: MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAICbo/o2yp5NmWam6JMQgF0jYCanz8zgxaUBAoWwqBTvRIji5hzLT1DGdj2PWk6d4gDxnHaifaTd9zBQtnsUvYi6+Zh8eF76wxBD1G4vWnCOpOGGlqiufZcgBl7Q0WTMRGMyV9vxZgHJBZKLjdpZXjchvq5Tn7ys1P1QOdXbZb+lAgMBAAECgYAuyfEPYA25KBwuJ30nu/IncG5Tweus6v2c+VAUmV+dNitl7b6wLRtvFLUB0nyVa4VEuKIm2xkA+SwsLMEm6DXH25XHgEREAzfStL4AgKZ6q3+4PnXccKZ2QjuLnbSiW1o48mY26hoy9bxv1kFwWdeq4SNt6Vv/c1zZxq4yXG4JRQJBAMBZFnOiKAeDN9OuxzCxymqbyh2Q3gdL2+N7P6RfmaLuUATcLE5bogKRHmY2E67w4ZASLxF3F4s1hvc24ikFraMCQQCrKsQhYkOKFUvB0KrHI3GKeN2JUW8l0MyyrwcRCo6+u+lGjVWNBJYVSq5VG8APPFWBtyiHKnNtJJ6w9/I4FqIXAkEAom9Zj4NkTJvanHBgFNY/+3He6ML7TawZYO0nXLfDNh4NA12wKOgnVAWbZ3PJgZY41oMUrqok/tHQTZtSuJPsAwJAbMhSO/FKgVCFhBkM4GDLQTkNer8Rh5QK9Ci+sfrmu5uLZzZdv7DBfain4Rkw1739jeIM1NKK5zuVy1zZSQJBYwJBAJaDKhxvWc5rT3bC4SpJCewVfQ7ou5L6tj0uFWD6OFgETz4KMMWN0mGk1PXrDe58ci3q4vEl+Y8IkOT40r6o6Jc=
 
 server:
   port: 8080
@@ -12,7 +14,7 @@ server:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://${jasypt.baseurl}:${jasypt.mysql-port}/bilibili-server?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
-    username: ${jasypt.username}
-    password: ${jasypt.password}
+    url: jdbc:mysql://${JASYPT_BASEURL}:${JASYPT_MYSQL_PORT}/bilibili-server?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    username: ${JASYPT_USERNAME}
+    password: ${JASYPT_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver

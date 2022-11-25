@@ -1,4 +1,4 @@
-package com.bilibili.customer.api;
+package com.bilibili.customer;
 
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;

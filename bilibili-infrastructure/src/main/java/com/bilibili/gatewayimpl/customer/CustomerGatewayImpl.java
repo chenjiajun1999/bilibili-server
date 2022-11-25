@@ -1,7 +1,7 @@
-package com.bilibili.gateway.impl.customer;
+package com.bilibili.gatewayimpl.customer;
 
-import com.bilibili.gateway.impl.customer.database.CustomerMapper;
-import com.bilibili.gateway.impl.customer.database.object.CustomerDO;
+import com.bilibili.gatewayimpl.customer.database.CustomerMapper;
+import com.bilibili.gatewayimpl.customer.database.dataobject.CustomerDO;
 import com.bilibili.domain.customer.Customer;
 import com.bilibili.domain.customer.gateway.CustomerGateway;
 

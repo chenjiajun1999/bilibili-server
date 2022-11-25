@@ -3,8 +3,8 @@ package com.bilibili.web;
 import cn.hutool.crypto.SecureUtil;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.dto.SingleResponse;
-import com.bilibili.user.api.UserServiceI;
-import com.bilibili.user.dto.UserAddCmd;
+import com.bilibili.user.UserServiceI;
+import com.bilibili.user.dto.UserRegisterCmd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,8 +32,8 @@ public class UserController {
     }
 
     @PostMapping(value = "/users")
-    public Response register(@RequestBody UserAddCmd userAddCmd) {
-        return userService.addUser(userAddCmd);
+    public Response register(@RequestBody UserRegisterCmd cmd) {
+        return userService.register(cmd);
     }
 
     @PostMapping(value = "/user-tokens")

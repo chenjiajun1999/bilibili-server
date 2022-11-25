@@ -1,7 +1,8 @@
-package com.bilibili.gateway.impl.user.database.object;
+package com.bilibili.gatewayimpl.user.database.dataobject;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;

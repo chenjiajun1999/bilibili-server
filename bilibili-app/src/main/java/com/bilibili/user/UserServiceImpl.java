@@ -3,9 +3,8 @@ package com.bilibili.user;
 
 import com.alibaba.cola.catchlog.CatchAndLog;
 import com.alibaba.cola.dto.Response;
-import com.bilibili.user.api.UserServiceI;
-import com.bilibili.user.dto.UserAddCmd;
-import com.bilibili.user.executor.UserAddCmdExe;
+import com.bilibili.user.dto.UserRegisterCmd;
+import com.bilibili.user.executor.UserRegisterCmdExe;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,11 +14,11 @@ import javax.annotation.Resource;
 public class UserServiceImpl implements UserServiceI {
 
     @Resource
-    UserAddCmdExe userAddCmdExe;
+    UserRegisterCmdExe userRegisterCmdExe;
 
 
     @Override
-    public Response addUser(UserAddCmd userAddCmd) {
-        return userAddCmdExe.execute(userAddCmd);
+    public Response register(UserRegisterCmd userRegisterCmd) {
+        return userRegisterCmdExe.execute(userRegisterCmd);
     }
 }

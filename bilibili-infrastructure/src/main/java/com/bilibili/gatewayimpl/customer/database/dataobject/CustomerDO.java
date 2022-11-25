@@ -1,4 +1,4 @@
-package com.bilibili.gateway.impl.customer.database.object;
+package com.bilibili.gatewayimpl.customer.database.dataobject;
 
 import lombok.Data;
 

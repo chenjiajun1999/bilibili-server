@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author Frank Zhang
  */
-@MapperScan("com.bilibili.gateway.impl.**.database")
+@MapperScan("com.bilibili.gatewayimpl.**.database")
 @SpringBootApplication(scanBasePackages = {"com.bilibili", "com.alibaba.cola"})
 public class Application {
 

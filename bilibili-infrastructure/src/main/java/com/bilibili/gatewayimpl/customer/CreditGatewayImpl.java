@@ -1,4 +1,4 @@
-package com.bilibili.gateway.impl.customer;
+package com.bilibili.gatewayimpl.customer;
 
 import com.bilibili.domain.customer.Credit;
 import com.bilibili.domain.customer.gateway.CreditGateway;

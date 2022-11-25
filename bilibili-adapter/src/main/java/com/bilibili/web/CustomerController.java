@@ -2,7 +2,7 @@ package com.bilibili.web;
 
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.Response;
-import com.bilibili.customer.api.CustomerServiceI;
+import com.bilibili.customer.CustomerServiceI;
 import com.bilibili.customer.dto.CustomerAddCmd;
 import com.bilibili.customer.dto.CustomerListByNameQry;
 import com.bilibili.customer.dto.data.CustomerDTO;

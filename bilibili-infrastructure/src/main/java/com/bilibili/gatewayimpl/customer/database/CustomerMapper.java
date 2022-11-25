@@ -1,6 +1,6 @@
-package com.bilibili.gateway.impl.customer.database;
+package com.bilibili.gatewayimpl.customer.database;
 
-import com.bilibili.gateway.impl.customer.database.object.CustomerDO;
+import com.bilibili.gatewayimpl.customer.database.dataobject.CustomerDO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
