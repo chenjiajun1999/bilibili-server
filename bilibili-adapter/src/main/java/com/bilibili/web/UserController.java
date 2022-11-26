@@ -41,4 +41,9 @@ public class UserController {
     public SingleResponse<String> login(@RequestBody UserLoginCmd cmd) {
         return userService.login(cmd);
     }
+
+    @PostMapping(value = "/user-infos")
+    public SingleResponse<String> getUserInfo() {
+        return null;
+    }
 }
