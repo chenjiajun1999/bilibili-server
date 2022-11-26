@@ -1,9 +1,9 @@
 package com.bilibili.gatewayimpl.user;
 
+import cn.dev33.satoken.stp.StpUtil;
 import com.alibaba.cola.exception.BizException;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
-import com.bilibili.common.util.TokenUtil;
 import com.bilibili.domain.user.User;
 import com.bilibili.domain.user.gateway.UserGateway;
 import com.bilibili.gatewayimpl.user.convertor.UserConvertor;
@@ -81,7 +81,8 @@ public class UserGatewayImpl implements UserGateway {
 
         // 验证
         user.getUserPassword().verify(userDO.getPassword(), userDO.getSalt());
-        return TokenUtil.generateToken(userDO.getId());
+        StpUtil.login(userDO.getId());
+        return StpUtil.getTokenValue();
 
     }
 }
