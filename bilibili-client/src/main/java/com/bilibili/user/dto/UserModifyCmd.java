@@ -10,6 +10,8 @@ import lombok.EqualsAndHashCode;
 @Data
 public class UserModifyCmd extends Command {
 
-    private UserDTO userDTO;
+    private String phone;
+    private String email;
+    private String password;
 
 }

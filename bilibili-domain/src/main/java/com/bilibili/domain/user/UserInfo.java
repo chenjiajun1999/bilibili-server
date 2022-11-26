@@ -2,18 +2,20 @@ package com.bilibili.domain.user;
 
 import cn.hutool.core.util.RandomUtil;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
 public class UserInfo implements UserConstant {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键
-     */
-    private Long id;
+//    /**
+//     * 主键
+//     */
+//    private Long id;
 
     /**
      * 用户id
@@ -23,7 +25,7 @@ public class UserInfo implements UserConstant {
     /**
      * 昵称
      */
-    private String nick;
+    private UserNick userNick;
 
     /**
      * 头像
@@ -55,12 +57,13 @@ public class UserInfo implements UserConstant {
      */
     private LocalDateTime updateTime;
 
-    public UserInfo(Long userId) {
+    public UserInfo init(Long userId) {
 
         this.userId = userId;
-        nick = "bid_" + RandomUtil.randomString(8);
+        userNick = new UserNick();
         gender = GENDER_UNKNOW;
         birth = DEFAULT_BIRTH;
-
+        return this;
     }
+
 }
