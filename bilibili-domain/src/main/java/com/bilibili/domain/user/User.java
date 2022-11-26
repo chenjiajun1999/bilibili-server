@@ -18,7 +18,7 @@ public class User {
     /**
      * 手机号
      */
-    private UserPhone phone;
+    private UserPhone userPhone;
 
     /**
      * 邮箱
@@ -28,7 +28,7 @@ public class User {
     /**
      * 密码
      */
-    private UserPasswordEncoder encoder;
+    private UserPassword userPassword;
 
     /**
      * 创建时间
@@ -39,6 +39,5 @@ public class User {
      * 更新时间
      */
     private LocalDateTime updateTime;
-
 
 }

@@ -6,12 +6,12 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.alibaba.cola.exception.BizException;
 import com.bilibili.user.dto.data.ErrorCode;
-import com.bilibili.utils.RSAUtils;
+import com.bilibili.util.RSAUtil;
 import lombok.Data;
 
 
 @Data
-public class UserPasswordEncoder {
+public class UserPassword {
 
     private String password;
 
@@ -19,7 +19,7 @@ public class UserPasswordEncoder {
 
 
     // 注册调用
-    public UserPasswordEncoder encoder(String password) {
+    public UserPassword encoder(String password) {
 
         check(password);
 
@@ -29,7 +29,7 @@ public class UserPasswordEncoder {
     }
 
     // 登录调用
-    public UserPasswordEncoder storage(String password){
+    public UserPassword storage(String password){
 
         check(password);
 
@@ -56,7 +56,7 @@ public class UserPasswordEncoder {
         }
 
         try {
-            RSAUtils.decrypt(password);
+            RSAUtil.decrypt(password);
         } catch (Exception e) {
             throw new BizException(ErrorCode.B_USER_passwordRSAFailed.getErrCode(),
                     ErrorCode.B_USER_passwordRSAFailed.getErrDesc());

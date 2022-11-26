@@ -1,4 +1,4 @@
-package com.bilibili.common.utils;
+package com.bilibili.common.util;
 
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTUtil;
@@ -7,7 +7,7 @@ import com.alibaba.cola.exception.BizException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TokenUtils {
+public class TokenUtil {
 
 
     private static final String TOKEN_KEY = "bilibili";

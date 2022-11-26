@@ -1,4 +1,4 @@
-package com.bilibili.utils;
+package com.bilibili.util;
 
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
@@ -12,7 +12,7 @@ import com.alibaba.cola.domain.ApplicationContextHelper;
  * 特点：加密安全性很高，但是加密速度较慢
  */
 
-public class RSAUtils {
+public class RSAUtil {
 
     private static final String publicKey = ApplicationContextHelper.getApplicationContext()
             .getEnvironment().getProperty("RSA_PUBLIC_KEY", String.class);

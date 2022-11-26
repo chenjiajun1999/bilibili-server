@@ -25,7 +25,7 @@ public class UserPhone {
         this.phone = phone;
     }
 
-    public String getNumber() {
+    public String getPhone() {
         return phone;
     }
 
