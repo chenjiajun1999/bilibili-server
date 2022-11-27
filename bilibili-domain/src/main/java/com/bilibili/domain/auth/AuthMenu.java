@@ -6,4 +6,8 @@ import lombok.Data;
 @Data
 @Entity
 public class AuthMenu {
+
+    private String name;
+    private String code;
+
 }

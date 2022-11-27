@@ -14,8 +14,10 @@ import com.bilibili.gatewayimpl.user.convertor.UserConvertor;
 import com.bilibili.gatewayimpl.user.convertor.UserInfoConvertor;
 import com.bilibili.gatewayimpl.user.database.UserInfoMapper;
 import com.bilibili.gatewayimpl.user.database.UserMapper;
+import com.bilibili.gatewayimpl.user.database.UserRoleMapper;
 import com.bilibili.gatewayimpl.user.database.dataobject.UserDO;
 import com.bilibili.gatewayimpl.user.database.dataobject.UserInfoDO;
+import com.bilibili.gatewayimpl.user.database.dataobject.UserRoleDO;
 import com.bilibili.user.dto.data.ErrorCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,6 +31,9 @@ public class UserGatewayImpl implements UserGatewayI {
 
     @Autowired
     UserInfoMapper userInfoMapper;
+
+    @Autowired
+    UserRoleMapper userRoleMapper;
 
     @Override
     public Boolean checkByPhone(String phone) {
@@ -132,5 +137,14 @@ public class UserGatewayImpl implements UserGatewayI {
             throw new BizException(ErrorCode.B_USER_infoNotExit.getErrCode(), ErrorCode.B_USER_infoNotExit.getErrDesc());
         }
         return UserInfoConvertor.toEntity(userInfoDO);
+    }
+
+    @Override
+    public Long getUserRoleIdById(Long userId) {
+
+        QueryWrapper<UserRoleDO> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("userId",userId);
+        return userRoleMapper.selectOne(queryWrapper).getRoleId();
+
     }
 }

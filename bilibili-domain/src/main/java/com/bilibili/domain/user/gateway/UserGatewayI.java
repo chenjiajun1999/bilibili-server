@@ -7,6 +7,7 @@ public interface UserGatewayI {
 
 
     Boolean checkByPhone(String phone);
+
     Boolean checkByEmail(String email);
 
     Boolean checkById(Long id);
@@ -21,9 +22,10 @@ public interface UserGatewayI {
 
     String login(User user);
 
-
     UserInfo getUserInfoById(Long userId);
 
     UserInfo getUserInfoByNick(String nick);
+
+    Long getUserRoleIdById(Long userId);
 
 }

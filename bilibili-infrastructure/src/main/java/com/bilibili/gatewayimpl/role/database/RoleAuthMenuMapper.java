@@ -2,6 +2,7 @@ package com.bilibili.gatewayimpl.role.database;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.bilibili.gatewayimpl.role.database.dataobject.RoleAuthMenuDO;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 权限控制--角色页面菜单关联表 Mapper 接口
@@ -9,6 +10,7 @@ import com.bilibili.gatewayimpl.role.database.dataobject.RoleAuthMenuDO;
  * @author Jiajun Chen
  * @since 2022-11-27
  */
+@Mapper
 public interface RoleAuthMenuMapper extends BaseMapper<RoleAuthMenuDO> {
 
 }
