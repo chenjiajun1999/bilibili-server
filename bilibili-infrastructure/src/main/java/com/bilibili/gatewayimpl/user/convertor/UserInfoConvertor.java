@@ -2,7 +2,7 @@ package com.bilibili.gatewayimpl.user.convertor;
 
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.bilibili.domain.user.UserInfo;
-import com.bilibili.domain.user.UserNick;
+import com.bilibili.domain.user.UserInfoNick;
 import com.bilibili.gatewayimpl.user.database.dataobject.UserDO;
 import com.bilibili.gatewayimpl.user.database.dataobject.UserInfoDO;
 import org.springframework.beans.BeanUtils;
@@ -16,7 +16,7 @@ public class UserInfoConvertor {
 
         UserInfo userInfo = new UserInfo();
         BeanUtils.copyProperties(userInfoDO, userInfo);
-        userInfo.setUserNick(new UserNick(userInfoDO.getNick()));
+        userInfo.setUserInfoNick(new UserInfoNick(userInfoDO.getNick()));
         return userInfo;
     }
 
@@ -27,7 +27,7 @@ public class UserInfoConvertor {
         UserInfoDO userInfoDO = new UserInfoDO();
         UserInfo userInfo = new UserInfo().init(userDO.getId());
         BeanUtils.copyProperties(userInfo, userInfoDO);
-        userInfoDO.setNick(userInfo.getUserNick().getNick());
+        userInfoDO.setNick(userInfo.getUserInfoNick().getNick());
         return userInfoDO;
     }
 
@@ -37,8 +37,8 @@ public class UserInfoConvertor {
         UserInfoDO userInfoDO = new UserInfoDO();
         BeanUtils.copyProperties(userInfo, userInfoDO);
 
-        if (ObjectUtils.isNotEmpty(userInfo.getUserNick())) {
-            userInfoDO.setNick(userInfo.getUserNick().getNick());
+        if (ObjectUtils.isNotEmpty(userInfo.getUserInfoNick())) {
+            userInfoDO.setNick(userInfo.getUserInfoNick().getNick());
         }
 
         userInfoDO.setUpdateTime(LocalDateTime.now());

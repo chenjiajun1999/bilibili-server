@@ -5,7 +5,7 @@ import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import com.bilibili.domain.user.UserInfo;
-import com.bilibili.domain.user.UserNick;
+import com.bilibili.domain.user.UserInfoNick;
 import com.bilibili.user.dto.UserInfoModifyCmd;
 import com.bilibili.user.dto.data.UserInfoDTO;
 import org.springframework.beans.BeanUtils;
@@ -18,7 +18,7 @@ public class UserInfoAssembler {
         UserInfoDTO userInfoDTO = new UserInfoDTO();
         BeanUtils.copyProperties(userInfo, userInfoDTO);
 
-        userInfoDTO.setNick(userInfo.getUserNick().getNick());
+        userInfoDTO.setNick(userInfo.getUserInfoNick().getNick());
         userInfoDTO.setCreateTime(DateUtil.formatLocalDateTime(userInfo.getCreateTime()));
         userInfoDTO.setUpdateTime(DateUtil.formatLocalDateTime(userInfo.getUpdateTime()));
         return userInfoDTO;
@@ -32,7 +32,7 @@ public class UserInfoAssembler {
         BeanUtils.copyProperties(cmd, userInfo);
 
         if(StrUtil.isNotBlank(cmd.getNick())){
-            userInfo.setUserNick(new UserNick(cmd.getNick()));
+            userInfo.setUserInfoNick(new UserInfoNick(cmd.getNick()));
         }
 
         userInfo.setUserId(Convert.toLong(StpUtil.getLoginId()));

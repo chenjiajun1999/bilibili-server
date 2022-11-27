@@ -1,4 +1,4 @@
-package com.bilibili.gatewayimpl.user.database.dataobject;
+package com.bilibili.gatewayimpl.auth.database.dataobject;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -11,66 +11,41 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 用户基本信息表
+ * 权限控制--角色页面菜单关联表
  *
  * @author Jiajun Chen
- * @since 2022-11-25
+ * @since 2022-11-27
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName(value= "t_user_info")
-public class UserInfoDO implements Serializable {
+@TableName(value= "t_auth_role_menu")
+public class AuthRoleMenuDO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键
+     * 主键id
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**
-     * 用户id
+     * 角色id
      */
-    @TableField("userId")
-    private Long userId;
+    @TableField("roleId")
+    private Long roleId;
 
     /**
-     * 昵称
+     * 页面菜单id
      */
-    private String nick;
-
-    /**
-     * 头像
-     */
-    private String avatar;
-
-    /**
-     * 签名
-     */
-    private String sign;
-
-    /**
-     * 性别：0男 1女 2未知
-     */
-    private String gender;
-
-    /**
-     * 生日
-     */
-    private String birth;
+    @TableField("menuId")
+    private Long menuId;
 
     /**
      * 创建时间
      */
     @TableField("createTime")
     private LocalDateTime createTime;
-
-    /**
-     * 更新时间
-     */
-    @TableField("updateTime")
-    private LocalDateTime updateTime;
 
 
 }

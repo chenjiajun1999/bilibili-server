@@ -1,4 +1,4 @@
-package com.bilibili.gatewayimpl.user.database.dataobject;
+package com.bilibili.gatewayimpl.auth.database.dataobject;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -11,54 +11,33 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 用户基本信息表
+ * 权限控制-页面访问表
  *
  * @author Jiajun Chen
- * @since 2022-11-25
+ * @since 2022-11-27
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName(value= "t_user_info")
-public class UserInfoDO implements Serializable {
+@TableName(value= "t_auth_menu")
+public class AuthMenuDO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键
+     * 主键id
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**
-     * 用户id
+     * 菜单项目名称
      */
-    @TableField("userId")
-    private Long userId;
+    private String name;
 
     /**
-     * 昵称
+     * 唯一编码
      */
-    private String nick;
-
-    /**
-     * 头像
-     */
-    private String avatar;
-
-    /**
-     * 签名
-     */
-    private String sign;
-
-    /**
-     * 性别：0男 1女 2未知
-     */
-    private String gender;
-
-    /**
-     * 生日
-     */
-    private String birth;
+    private String code;
 
     /**
      * 创建时间

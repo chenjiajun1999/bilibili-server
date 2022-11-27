@@ -11,20 +11,20 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 用户基本信息表
+ * 用户动态表
  *
  * @author Jiajun Chen
- * @since 2022-11-25
+ * @since 2022-11-27
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName(value= "t_user_info")
-public class UserInfoDO implements Serializable {
+@TableName(value= "t_user_monments")
+public class UserMomentsDO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键
+     * 主键id
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
@@ -36,29 +36,15 @@ public class UserInfoDO implements Serializable {
     private Long userId;
 
     /**
-     * 昵称
+     * 动态类型：0视频 1直播 2专栏动态
      */
-    private String nick;
+    private String type;
 
     /**
-     * 头像
+     * 内容详情id
      */
-    private String avatar;
-
-    /**
-     * 签名
-     */
-    private String sign;
-
-    /**
-     * 性别：0男 1女 2未知
-     */
-    private String gender;
-
-    /**
-     * 生日
-     */
-    private String birth;
+    @TableField("contentId")
+    private Long contentId;
 
     /**
      * 创建时间

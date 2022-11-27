@@ -7,11 +7,11 @@ import com.bilibili.user.dto.data.ErrorCode;
 import lombok.Data;
 
 @Data
-public class UserNick {
+public class UserInfoNick {
 
     private String nick;
 
-    public UserNick(String nick) {
+    public UserInfoNick(String nick) {
 
         if (StrUtil.isBlank(nick)) {
             throw new BizException(ErrorCode.B_USER_nickBlank.getErrCode(),
@@ -21,7 +21,7 @@ public class UserNick {
         this.nick = nick;
     }
 
-    public UserNick() {
+    public UserInfoNick() {
 
         this.nick = "bid_" + RandomUtil.randomString(8);
 
