@@ -2,7 +2,7 @@ package com.bilibili.user.dto.data;
 
 public enum ErrorCode {
 
-    B_USER_idNotExit("B_USER_idNotExit", "用户不存在"),
+    B_USER_isNotExit("B_USER_idNotExit", "用户不存在"),
 
     B_USER_passwordBlank("B_USER_passwordBlank", "密码为空"),
     B_USER_passwordRSAFailed("B_USER_passwordRSAFailed", "密码 RSA 解密失败"),
@@ -13,12 +13,19 @@ public enum ErrorCode {
     B_USER_phoneInvalid("B_USER_phoneInvalid", "手机号格式错误"),
     B_USER_phoneBlank("B_USER_phoneBlank", "手机号为空"),
 
+    B_USER_emailExit("B_USER_emailExit", "邮箱已存在"),
+    B_USER_emailInvalid("B_USER_emailInvalid", "邮箱格式错误"),
+
+    B_USER_identifierBlank("B_USER_identifierBlank", "用户标识为空"),
+
 
     B_USER_nickBlank("B_USER_nickBlank", "用户名称为空"),
     B_USER_nickInvalid("B_USER_nickInvalid", "用户名称非法"),
     B_USER_nickExit("B_USER_nickExit", "用户名已存在"),
 
+
     B_USER_infoNotExit("B_USER_infoNotExit", "用户信息不存在");
+
 
     private final String errCode;
     private final String errDesc;

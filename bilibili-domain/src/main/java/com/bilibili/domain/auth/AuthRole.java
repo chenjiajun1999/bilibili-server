@@ -7,4 +7,8 @@ import lombok.Data;
 @Data
 @Entity
 public class AuthRole {
+
+    private String name;
+    private String code;
+
 }

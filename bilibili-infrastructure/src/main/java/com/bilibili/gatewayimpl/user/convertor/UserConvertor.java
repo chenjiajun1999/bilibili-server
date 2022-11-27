@@ -13,9 +13,10 @@ public class UserConvertor {
     public static UserDO toDataObject(User user) {
 
         UserDO userDO = new UserDO();
-        userDO.setPhone(user.getUserPhone().getPhone());
-        userDO.setPassword(user.getUserPassword().getPassword());
-        userDO.setSalt(user.getUserPassword().getSalt());
+        userDO.setPhone(user.getIdentifier().getPhone());
+        userDO.setEmail(user.getIdentifier().getEmail());
+        userDO.setPassword(user.getValidator().getPassword());
+        userDO.setSalt(user.getValidator().getSalt());
 
         LocalDateTime now = LocalDateTime.now();
         userDO.setCreateTime(now);

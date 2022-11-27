@@ -1,5 +1,6 @@
 package com.bilibili.user.executor;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.exception.BizException;
 import com.bilibili.domain.user.User;
@@ -21,8 +22,11 @@ public class UserRegisterCmdExe {
     public Response execute(UserRegisterCmd cmd) {
 
         User user = UserAssembler.toEntity(cmd);
-        if (userGateway.checkByPhone(cmd.getPhone())) {
+        if (StrUtil.isNotBlank(cmd.getPhone()) && userGateway.checkByPhone(cmd.getPhone())) {
             throw new BizException(ErrorCode.B_USER_phoneExit.getErrCode(), ErrorCode.B_USER_phoneExit.getErrDesc());
+        }
+        if (StrUtil.isNotBlank(cmd.getEmail()) && userGateway.checkByEmail(cmd.getEmail())) {
+            throw new BizException(ErrorCode.B_USER_emailExit.getErrCode(), ErrorCode.B_USER_emailExit.getErrDesc());
         }
         userGateway.register(user);
         return Response.buildSuccess();

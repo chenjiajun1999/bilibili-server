@@ -13,5 +13,6 @@ public class UserModifyCmd extends Command {
     private String phone;
     private String email;
     private String password;
+    private String newPassword;
 
 }

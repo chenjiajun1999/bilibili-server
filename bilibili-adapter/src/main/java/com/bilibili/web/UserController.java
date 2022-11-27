@@ -20,10 +20,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class UserController {
 
-
     @Autowired
     UserServiceI userService;
-
 
     @GetMapping("/rsa-pks")
     public SingleResponse<String> getRsaPublicKey() {

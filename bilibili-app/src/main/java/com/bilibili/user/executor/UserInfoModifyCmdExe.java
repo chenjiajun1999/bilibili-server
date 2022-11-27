@@ -25,7 +25,7 @@ public class UserInfoModifyCmdExe {
         if (StrUtil.isNotBlank(cmd.getNick()) && userGateway.checkByNick(cmd.getNick())) {
             throw new BizException(ErrorCode.B_USER_nickExit.getErrCode(), ErrorCode.B_USER_nickExit.getErrDesc());
         }
-        userGateway.modify(userInfo);
+        userGateway.modify(userInfo.validate());
         return Response.buildSuccess();
     }
 }

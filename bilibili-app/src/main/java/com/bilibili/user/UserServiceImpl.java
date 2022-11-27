@@ -38,6 +38,9 @@ public class UserServiceImpl implements UserServiceI {
     @Resource
     UserInfoModifyCmdExe userInfoModifyCmdExe;
 
+    @Resource
+    UserModifyCmdExe userModifyCmdExe;
+
 
     @Override
     public Response register(UserRegisterCmd userRegisterCmd) {
@@ -47,6 +50,11 @@ public class UserServiceImpl implements UserServiceI {
     @Override
     public SingleResponse<String> login(UserLoginCmd userLoginCmd) {
         return userLoginCmdExe.execute(userLoginCmd);
+    }
+
+    @Override
+    public Response modify(UserModifyCmd userModifyCmd) {
+        return userModifyCmdExe.execute(userModifyCmd);
     }
 
     @Override

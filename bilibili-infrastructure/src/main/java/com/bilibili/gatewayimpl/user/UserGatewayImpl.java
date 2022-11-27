@@ -1,6 +1,8 @@
 package com.bilibili.gatewayimpl.user;
 
 import cn.dev33.satoken.stp.StpUtil;
+import cn.hutool.core.convert.Convert;
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.cola.exception.BizException;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
@@ -37,6 +39,13 @@ public class UserGatewayImpl implements UserGateway {
     }
 
     @Override
+    public Boolean checkByEmail(String email) {
+        QueryWrapper<UserDO> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("email", email);
+        return ObjectUtils.isNotEmpty(userMapper.selectOne(queryWrapper));
+    }
+
+    @Override
     public Boolean checkById(Long id) {
         QueryWrapper<UserDO> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("id", id);
@@ -55,8 +64,9 @@ public class UserGatewayImpl implements UserGateway {
     public void register(User user) {
 
         UserDO userDO = UserConvertor.toDataObject(user);
+        // 插入后获得自增 id
         userMapper.insert(userDO);
-        userInfoMapper.insert(UserInfoConvertor.toDataObject(userDO));
+        userInfoMapper.insert(UserInfoConvertor.toDataObject(new UserInfo().init(userDO.getId())));
 
     }
 
@@ -64,13 +74,18 @@ public class UserGatewayImpl implements UserGateway {
     public String login(User user) {
 
         QueryWrapper<UserDO> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("phone", user.getUserPhone().getPhone());
+        // 手机号
+        if (StrUtil.isNotBlank(user.getIdentifier().getPhone())) {
+            queryWrapper.eq("phone", user.getIdentifier().getPhone());
+        } else {
+            queryWrapper.eq("email", user.getIdentifier().getEmail());
+        }
         UserDO userDO = userMapper.selectOne(queryWrapper);
         if (ObjectUtils.isEmpty(userDO)) {
-            throw new BizException(ErrorCode.B_USER_phoneNotExit.getErrCode(), ErrorCode.B_USER_phoneNotExit.getErrDesc());
+            throw new BizException(ErrorCode.B_USER_isNotExit.getErrCode(), ErrorCode.B_USER_isNotExit.getErrDesc());
         }
         // 验证
-        user.getUserPassword().verify(userDO.getPassword(), userDO.getSalt());
+        user.getValidator().validate(userDO.getPassword(), userDO.getSalt());
         StpUtil.login(userDO.getId());
         return StpUtil.getTokenValue();
 
@@ -79,14 +94,18 @@ public class UserGatewayImpl implements UserGateway {
     @Override
     public void modify(User user) {
 
+        UpdateWrapper<UserDO> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.set("id", Convert.toLong(StpUtil.getLoginId()));
+        userMapper.update(UserConvertor.toDataObject(user), updateWrapper);
+
     }
 
     @Override
     public void modify(UserInfo userInfo) {
 
         UpdateWrapper<UserInfoDO> updateWrapper = new UpdateWrapper<>();
-        updateWrapper.set("userId",userInfo.getUserId());
-        userInfoMapper.update(UserInfoConvertor.toDataObject(userInfo),updateWrapper);
+        updateWrapper.set("userId", userInfo.getUserId());
+        userInfoMapper.update(UserInfoConvertor.toDataObject(userInfo), updateWrapper);
 
     }
 

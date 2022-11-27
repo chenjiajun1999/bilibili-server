@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 public class UserRegisterCmd extends Command {
 
     private String phone;
+    private String email;
     private String password;
 
 }
