@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.bilibili.domain.user.User;
 import com.bilibili.domain.user.UserInfo;
-import com.bilibili.domain.user.gateway.UserGateway;
+import com.bilibili.domain.user.gateway.UserGatewayI;
 import com.bilibili.gatewayimpl.user.convertor.UserConvertor;
 import com.bilibili.gatewayimpl.user.convertor.UserInfoConvertor;
 import com.bilibili.gatewayimpl.user.database.UserInfoMapper;
@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
-public class UserGatewayImpl implements UserGateway {
+public class UserGatewayImpl implements UserGatewayI {
 
     @Autowired
     UserMapper userMapper;

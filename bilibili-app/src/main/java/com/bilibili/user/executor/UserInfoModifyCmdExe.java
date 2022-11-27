@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.alibaba.cola.dto.Response;
 import com.alibaba.cola.exception.BizException;
 import com.bilibili.domain.user.UserInfo;
-import com.bilibili.domain.user.gateway.UserGateway;
+import com.bilibili.domain.user.gateway.UserGatewayI;
 import com.bilibili.user.assembler.UserInfoAssembler;
 import com.bilibili.user.dto.UserInfoModifyCmd;
 import com.bilibili.user.dto.data.ErrorCode;
@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 public class UserInfoModifyCmdExe {
 
     @Resource
-    private UserGateway userGateway;
+    private UserGatewayI userGateway;
 
     public Response execute(UserInfoModifyCmd cmd) {
 

@@ -5,7 +5,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.convert.Convert;
 import com.alibaba.cola.dto.SingleResponse;
 import com.bilibili.domain.user.UserInfo;
-import com.bilibili.domain.user.gateway.UserGateway;
+import com.bilibili.domain.user.gateway.UserGatewayI;
 import com.bilibili.user.assembler.UserInfoAssembler;
 import com.bilibili.user.dto.data.UserInfoDTO;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 public class UserInfoQueryExe {
 
     @Resource
-    private UserGateway userGateway;
+    private UserGatewayI userGateway;
 
 
     public SingleResponse<UserInfoDTO> execute() {
