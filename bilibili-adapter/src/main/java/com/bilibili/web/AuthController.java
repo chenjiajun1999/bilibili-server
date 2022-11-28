@@ -1,6 +1,8 @@
 package com.bilibili.web;
 
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.annotation.SaCheckRole;
 import com.alibaba.cola.dto.SingleResponse;
 import com.bilibili.auth.AuthServiceI;
 import com.bilibili.auth.dto.data.AuthDTO;
@@ -21,6 +23,7 @@ public class AuthController {
     @Autowired
     AuthServiceI authService;
 
+    @SaCheckLogin
     @GetMapping("/auths")
     public SingleResponse<AuthDTO> getAuth(){
         return authService.getAuth();

@@ -1,6 +1,6 @@
 package com.bilibili.test;
 
-import com.bilibili.common.cache.RedisCache;
+import com.bilibili.common.thirdparty.RedisCache;
 import com.bilibili.common.util.TokenUtil;
 import com.bilibili.util.RSAUtil;
 import org.junit.jupiter.api.Test;

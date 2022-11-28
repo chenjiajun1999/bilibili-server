@@ -9,4 +9,8 @@ public interface RoleGatewayI {
 
     List<Long> getAuthMenuIdByRoleId(Long roleId);
 
+    String getRoleNameById(Long roleId);
+
+    String getRoleCodeById(Long roleId);
+
 }

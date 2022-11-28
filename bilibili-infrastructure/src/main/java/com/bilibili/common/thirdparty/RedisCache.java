@@ -1,4 +1,4 @@
-package com.bilibili.common.cache;
+package com.bilibili.common.thirdparty;
 
 import java.util.Collection;
 import java.util.Iterator;
