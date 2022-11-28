@@ -161,7 +161,21 @@
                 <artifactId>sa-token-jwt</artifactId>
                 <version>1.33.0</version>
             </dependency>
-
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>8.4.5</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>1.4</version>
+            </dependency>
+            <dependency>
+                <groupId>net.coobird</groupId>
+                <artifactId>thumbnailator</artifactId>
+                <version>0.4.18</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -185,7 +199,7 @@
                     <version>3.4.0</version>
                 </plugin>
                 <plugin>
-                     <artifactId>maven-deploy-plugin</artifactId>
+                    <artifactId>maven-deploy-plugin</artifactId>
                     <version>3.0.0</version>
                 </plugin>
 

@@ -1,5 +1,6 @@
 package com.bilibili.test;
 
+import com.bilibili.common.thirdparty.MinioStore;
 import com.bilibili.common.thirdparty.RedisCache;
 import com.bilibili.common.util.TokenUtil;
 import com.bilibili.util.RSAUtil;
@@ -7,9 +8,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 public class UtilsTest {
 
+    @Autowired
+    MinioStore minioStore;
 
     @Autowired
     RedisCache redisCache;
@@ -37,6 +42,14 @@ public class UtilsTest {
 
         redisCache.setCacheObject("test", "demo");
         System.out.println(redisCache.getCacheObject("test").toString());
+    }
+
+    @Test
+    void testMinio() throws Exception {
+
+        List<String> strings = minioStore.listBuckets();
+        strings.forEach(System.out::println);
+
     }
 
 }

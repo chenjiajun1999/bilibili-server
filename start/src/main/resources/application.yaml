@@ -6,6 +6,7 @@ JASYPT_PASSWORD: ENC(zrbh/kdig8bYqHVqEESVzBOp6/amsZ02)
 # 中间件端口配置
 MYSQL_PORT: 3306
 REDIS_PORT: 6379
+MINIO_PORT: 9001
 
 # RSA 公钥、私钥配置
 RSA_PUBLIC_KEY: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCAm6P6NsqeTZlmpuiTEIBdI2Amp8/M4MWlAQKFsKgU70SI4uYcy09QxnY9j1pOneIA8Zx2on2k3fcwULZ7FL2IuvmYfHhe+sMQQ9RuL1pwjqThhpaorn2XIAZe0NFkzERjMlfb8WYByQWSi43aWV43Ib6uU5+8rNT9UDnV22W/pQIDAQAB
@@ -47,6 +48,12 @@ spring:
         # #连接池最大阻塞等待时间（使用负值表示没有限制）
         max-wait: -1ms
 
+  # 限制文件大小
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 200MB
+
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*-mapper.xml
 
@@ -67,3 +74,9 @@ sa-token:
   is-log: false
   # 是否从 cookie 中读取 token
   is-read-cookie: false
+
+#minio配置
+minio:
+  url: http://${JASYPT_BASEURL}:${MINIO_PORT}  #对象存储服务的 URL
+  accessKey: ${JASYPT_USERNAME} #Access key账户
+  secretKey: ${JASYPT_PASSWORD}  #Secret key密码
