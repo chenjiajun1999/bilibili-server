@@ -10,8 +10,8 @@ import java.util.List;
 public class AuthDTO {
 
 
-    List<AuthElementOperationDTO> authElementOperationDTOList;
-    List<AuthMenuDTO> authMenuDTOList;
+    List<AuthElementOperationDTO> authElementOperationList;
+    List<AuthMenuDTO> authMenuList;
 
 
 }

@@ -11,12 +11,20 @@ public class UserInfoConvertor {
 
     public static UserInfo toEntity(UserInfoDO userInfoDO) {
 
+        if(ObjectUtils.isEmpty(userInfoDO)){
+            return null;
+        }
+
         UserInfo userInfo = new UserInfo();
         BeanUtils.copyProperties(userInfoDO, userInfo);
         return userInfo;
     }
 
     public static UserInfoDO toDataObject(UserInfo userInfo) {
+
+        if(ObjectUtils.isEmpty(userInfo)){
+            return null;
+        }
 
         UserInfoDO userInfoDO = new UserInfoDO();
         BeanUtils.copyProperties(userInfo, userInfoDO);
