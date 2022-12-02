@@ -2,7 +2,6 @@ package com.bilibili.test;
 
 import com.bilibili.common.thirdparty.MinioStore;
 import com.bilibili.common.thirdparty.RedisCache;
-import com.bilibili.common.util.TokenUtil;
 import com.bilibili.util.RSAUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +29,6 @@ public class UtilsTest {
     }
 
     @Test
-    void testJWT() {
-
-        String jwt = TokenUtil.generateToken((long) 111);
-        System.out.println(TokenUtil.verifyToken(jwt));
-
-    }
-
-    @Test
     void testRedis() {
 
         redisCache.setCacheObject("test", "demo");
@@ -47,7 +38,7 @@ public class UtilsTest {
     @Test
     void testMinio() throws Exception {
 
-        List<String> strings = minioStore.listBuckets();
+        List<String> strings = minioStore.getAllBucketsNames();
         strings.forEach(System.out::println);
 
     }
