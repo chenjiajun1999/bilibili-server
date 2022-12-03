@@ -6,10 +6,14 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
+import com.google.common.collect.Multimap;
 import io.minio.*;
 import io.minio.http.Method;
+import io.minio.messages.Part;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.MediaTypeFactory;
@@ -23,7 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class MinioStore {
 
     @Autowired
-    private MinioClient minioClient;
+    private MultiPartMinioClient minioClient;
 
     /**
      * 启动SpringBoot容器的时候初始化Bucket，如果没有Bucket则创建
@@ -226,7 +230,7 @@ public class MinioStore {
      * @param objectName 对象名
      * @return ObjectWriteResponse对象
      */
-    public ObjectWriteResponse uploadFile(String bucketName, MultipartFile file, String objectName) throws Exception {
+    public ObjectWriteResponse uploadFile(String bucketName, String objectName, MultipartFile file) throws Exception {
         InputStream inputStream = file.getInputStream();
         Optional<MediaType> optional = MediaTypeFactory.getMediaType(objectName);
         String mediaType = optional.orElseThrow(() -> new RuntimeException("文件类型暂不支持")).toString();
@@ -389,5 +393,52 @@ public class MinioStore {
     public String getUtf8ByDecoder(String str) throws UnsupportedEncodingException {
         String url = str.replaceAll("%(?![0-9a-fA-F]{2})", "%25");
         return URLDecoder.decode(url, "UTF-8");
+    }
+
+
+    /**
+     * 获取分片上传的信息
+     *
+     * @return 上传信息
+     */
+    @SneakyThrows
+    public CreateMultipartUploadResponse createMultipartUpload(String bucketName, String region, String objectName,
+                                                               Multimap<String, String> headers,
+                                                               Multimap<String, String> extraQueryParams) {
+        return minioClient.createMultipartUpload(bucketName, region, objectName, headers, extraQueryParams);
+    }
+
+
+    /**
+     * 合并分片
+     *
+     * @return 路径
+     */
+    @SneakyThrows
+    public ObjectWriteResponse completeMultipartUpload(String bucketName, String region, String objectName, String uploadId,
+                                                       Part[] parts, Multimap<String, String> extraHeaders,
+                                                       Multimap<String, String> extraQueryParams) {
+        return minioClient.completeMultipartUpload(bucketName, region, objectName,
+                uploadId, parts, extraHeaders, extraQueryParams);
+
+    }
+
+
+    /**
+     * 查询分片
+     *
+     * @return url
+     */
+    @SneakyThrows
+    public String getPreSignedObjectUrl(String bucketName, String objectName, Map<String, String> queryParams) {
+
+        return minioClient.getPresignedObjectUrl(
+                GetPresignedObjectUrlArgs.builder()
+                        .method(Method.PUT)
+                        .bucket(bucketName)
+                        .object(objectName)
+                        .expiry(60 * 60 * 24)
+                        .extraQueryParams(queryParams)
+                        .build());
     }
 }
