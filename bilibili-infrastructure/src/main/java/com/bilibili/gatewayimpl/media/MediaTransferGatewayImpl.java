@@ -4,6 +4,7 @@ import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.cola.exception.BizException;
 import com.bilibili.common.thirdparty.MinioStore;
 import com.bilibili.domain.media.gateway.MediaTransferGatewayI;
+import com.bilibili.media.dto.data.ErrorCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,13 +31,15 @@ public class MediaTransferGatewayImpl implements MediaTransferGatewayI {
     public void upload(String bucketName, String objectName, MultipartFile file) {
 
         if (ObjectUtil.isEmpty(file) || file.getSize() <= 0) {
-            throw new BizException("S_fileIsEmpty", "文件错误");
+            throw new BizException(ErrorCode.B_FILE_EMPTY.getErrCode(),
+                    ErrorCode.B_FILE_EMPTY.getErrDesc());
         }
 
         try {
             minioStore.uploadFile(bucketName, objectName, file);
         } catch (Exception e) {
-            throw new BizException("S_fileUploadError", "文件上传错误");
+            throw new BizException(ErrorCode.B_FILE_UPLOAD_ERROR.getErrCode(),
+                    ErrorCode.B_FILE_UPLOAD_ERROR.getErrDesc());
         }
     }
 

@@ -49,8 +49,8 @@ public class UserInfo {
 
         // null 通过，update 无影响
         if (nick != null && StrUtil.isBlank(nick)) {
-            throw new BizException(ErrorCode.B_USER_nickBlank.getErrCode(),
-                    ErrorCode.B_USER_nickBlank.getErrDesc());
+            throw new BizException(ErrorCode.B_USER_NICK_BLANK.getErrCode(),
+                    ErrorCode.B_USER_NICK_BLANK.getErrDesc());
         }
         // 敏感词过滤 ...
 

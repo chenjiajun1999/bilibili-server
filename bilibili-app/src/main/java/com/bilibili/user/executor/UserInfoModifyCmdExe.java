@@ -23,7 +23,7 @@ public class UserInfoModifyCmdExe {
         UserInfo userInfo = UserInfoAssembler.toEntity(cmd);
         // 若修改 nick 检查是否重复
         if (StrUtil.isNotBlank(cmd.getNick()) && userGateway.checkByNick(cmd.getNick())) {
-            throw new BizException(ErrorCode.B_USER_nickExit.getErrCode(), ErrorCode.B_USER_nickExit.getErrDesc());
+            throw new BizException(ErrorCode.B_USER_NICK_EXIT.getErrCode(), ErrorCode.B_USER_NICK_EXIT.getErrDesc());
         }
         userGateway.modify(userInfo.validate());
         return Response.buildSuccess();

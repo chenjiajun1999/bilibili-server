@@ -23,10 +23,10 @@ public class UserRegisterCmdExe {
 
         User user = UserAssembler.toEntity(cmd);
         if (StrUtil.isNotBlank(cmd.getPhone()) && userGateway.checkByPhone(cmd.getPhone())) {
-            throw new BizException(ErrorCode.B_USER_phoneExit.getErrCode(), ErrorCode.B_USER_phoneExit.getErrDesc());
+            throw new BizException(ErrorCode.B_USER_PHONE_EXIT.getErrCode(), ErrorCode.B_USER_PHONE_EXIT.getErrDesc());
         }
         if (StrUtil.isNotBlank(cmd.getEmail()) && userGateway.checkByEmail(cmd.getEmail())) {
-            throw new BizException(ErrorCode.B_USER_emailExit.getErrCode(), ErrorCode.B_USER_emailExit.getErrDesc());
+            throw new BizException(ErrorCode.B_USER_EMAIL_EXIT.getErrCode(), ErrorCode.B_USER_EMAIL_EXIT.getErrDesc());
         }
         userGateway.register(user);
         return Response.buildSuccess();

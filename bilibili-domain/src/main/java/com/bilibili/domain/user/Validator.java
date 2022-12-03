@@ -36,8 +36,8 @@ public class Validator {
 
         if (!encryptPassword.equals(SecureUtil.md5(password + salt))) {
 
-            throw new BizException(ErrorCode.B_USER_passwordError.getErrCode(),
-                    ErrorCode.B_USER_passwordError.getErrDesc());
+            throw new BizException(ErrorCode.B_USER_PASSWORD_ERROR.getErrCode(),
+                    ErrorCode.B_USER_PASSWORD_ERROR.getErrDesc());
 
         }
     }
@@ -45,15 +45,15 @@ public class Validator {
     private void check(String password){
 
         if (StrUtil.isBlank(password)) {
-            throw new BizException(ErrorCode.B_USER_passwordBlank.getErrCode(),
-                    ErrorCode.B_USER_passwordBlank.getErrDesc());
+            throw new BizException(ErrorCode.B_USER_PHONE_BLANK.getErrCode(),
+                    ErrorCode.B_USER_PHONE_BLANK.getErrDesc());
         }
 
         try {
             RSAUtil.decrypt(password);
         } catch (Exception e) {
-            throw new BizException(ErrorCode.B_USER_passwordRSAFailed.getErrCode(),
-                    ErrorCode.B_USER_passwordRSAFailed.getErrDesc());
+            throw new BizException(ErrorCode.B_USER_PASSWORD_RSA_FAILED.getErrCode(),
+                    ErrorCode.B_USER_PASSWORD_RSA_FAILED.getErrDesc());
         }
 
     }

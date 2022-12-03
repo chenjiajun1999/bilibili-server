@@ -16,21 +16,21 @@ public class Identifier {
 
         // 用户至少要有一个手机和邮箱
         if (StrUtil.isBlank(phone) && StrUtil.isBlank(email)) {
-            throw new BizException(ErrorCode.B_USER_identifierBlank.getErrCode(),
-                    ErrorCode.B_USER_identifierBlank.getErrDesc());
+            throw new BizException(ErrorCode.B_USER_IDENTIFIER_BLANK.getErrCode(),
+                    ErrorCode.B_USER_IDENTIFIER_BLANK.getErrDesc());
         }
 
         // 验证手机
         if (phone != null && !Validator.isMobile(phone)) {
-            throw new BizException(ErrorCode.B_USER_phoneInvalid.getErrCode(),
-                    ErrorCode.B_USER_phoneInvalid.getErrDesc());
+            throw new BizException(ErrorCode.B_USER_PHONE_INVALID.getErrCode(),
+                    ErrorCode.B_USER_PHONE_INVALID.getErrDesc());
 
         }
 
         // 验证邮箱
         if (email != null && !Validator.isEmail(email)) {
-            throw new BizException(ErrorCode.B_USER_emailInvalid.getErrCode(),
-                    ErrorCode.B_USER_emailInvalid.getErrDesc());
+            throw new BizException(ErrorCode.B_USER_EMAIL_INVALID.getErrCode(),
+                    ErrorCode.B_USER_EMAIL_INVALID.getErrDesc());
         }
 
         this.phone = phone;

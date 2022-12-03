@@ -87,7 +87,7 @@ public class UserGatewayImpl implements UserGatewayI {
         }
         UserDO userDO = userMapper.selectOne(queryWrapper);
         if (ObjectUtils.isEmpty(userDO)) {
-            throw new BizException(ErrorCode.B_USER_isNotExit.getErrCode(), ErrorCode.B_USER_isNotExit.getErrDesc());
+            throw new BizException(ErrorCode.B_USER_NOT_EXIT.getErrCode(), ErrorCode.B_USER_NOT_EXIT.getErrDesc());
         }
         // 验证
         user.getValidator().validate(userDO.getPassword(), userDO.getSalt());
@@ -121,7 +121,7 @@ public class UserGatewayImpl implements UserGatewayI {
         queryWrapper.eq("userid", userId);
         UserInfoDO userInfoDO = userInfoMapper.selectOne(queryWrapper);
         if (ObjectUtils.isEmpty(userInfoDO)) {
-            throw new BizException(ErrorCode.B_USER_infoNotExit.getErrCode(), ErrorCode.B_USER_infoNotExit.getErrDesc());
+            throw new BizException(ErrorCode.B_USER_INFO_NOT_EXIT.getErrCode(), ErrorCode.B_USER_INFO_NOT_EXIT.getErrDesc());
         }
 
         return UserInfoConvertor.toEntity(userInfoDO);
@@ -134,7 +134,7 @@ public class UserGatewayImpl implements UserGatewayI {
         queryWrapper.eq("nick", nick);
         UserInfoDO userInfoDO = userInfoMapper.selectOne(queryWrapper);
         if (ObjectUtils.isEmpty(userInfoDO)) {
-            throw new BizException(ErrorCode.B_USER_infoNotExit.getErrCode(), ErrorCode.B_USER_infoNotExit.getErrDesc());
+            throw new BizException(ErrorCode.B_USER_INFO_NOT_EXIT.getErrCode(), ErrorCode.B_USER_INFO_NOT_EXIT.getErrDesc());
         }
         return UserInfoConvertor.toEntity(userInfoDO);
     }
